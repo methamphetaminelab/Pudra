@@ -12,24 +12,28 @@ namespace Pudra
         static extern short GetAsyncKeyState(int vKey);
         private bool isShow = true;
         private bool wasMenuPressed = false;
-        public bool isBhop = false;
+        private ConcurrentQueue<Player> players = new ConcurrentQueue<Player>();
+        private Player localPlayer = new Player();
+        private readonly object playerLock = new object();
+        private ImDrawListPtr drawList;
+
+        // ESP
         private bool isEsp = false;
         private bool isEspTeam = false;
-
         private bool isBoxEsp = false;
         private bool isLineEsp = false;
         private bool isNameEsp = false;
         private bool isHealthEsp = false;
 
+        // MISC
+        public bool isBhop = false;
+        public bool isAntiFlash = false;
+
+        // COLORS
         private Vector4 enemyColor = new Vector4(1, 0, 0, 1);
         private Vector4 teamColor = new Vector4(0, 1, 0, 1);
+        private Vector4 nameColor = new Vector4(1, 1, 1, 1);
         public Vector2 screenSize = new Vector2(1920, 1080);
-
-        private ConcurrentQueue<Player> players = new ConcurrentQueue<Player>();
-        private Player localPlayer = new Player();
-        private readonly object playerLock = new object();
-
-        ImDrawListPtr drawList;
 
         protected override void Render()
         {
@@ -43,16 +47,39 @@ namespace Pudra
             if (isShow)
             {
                 ImGui.Begin("Pudra");
-                ImGui.Checkbox("ESP", ref isEsp);
-                if (isEsp)
+                if (ImGui.BeginTabBar("Tabs"))
                 {
-                    ImGui.Checkbox("TEAM ESP", ref isEspTeam);
-                    ImGui.Checkbox("BOX ESP", ref isBoxEsp);
-                    ImGui.Checkbox("LINE ESP", ref isLineEsp);
-                    ImGui.Checkbox("NAME ESP", ref isNameEsp);
-                    ImGui.Checkbox("HEALTH ESP", ref isHealthEsp);
+
+                    if (ImGui.BeginTabItem("ESP"))
+                    {
+                        ImGui.Checkbox("ESP", ref isEsp);
+                        if (isEsp)
+                        {
+                            ImGui.Checkbox("TEAM ESP", ref isEspTeam);
+                            ImGui.Checkbox("BOX ESP", ref isBoxEsp);
+                            ImGui.Checkbox("LINE ESP", ref isLineEsp);
+                            ImGui.Checkbox("NAME ESP", ref isNameEsp);
+                            ImGui.Checkbox("HEALTH ESP", ref isHealthEsp);
+                        }
+                        ImGui.EndTabItem();
+                    }
+
+                    if (ImGui.BeginTabItem("MISC"))
+                    {
+                        ImGui.Checkbox("BHOP", ref isBhop);
+                        ImGui.Checkbox("ANTIFLASH", ref isAntiFlash);
+                        ImGui.EndTabItem();
+                    }
+
+                    if (ImGui.BeginTabItem("COLORS"))
+                    {
+                        ImGui.ColorPicker4("TEAM COLOR", ref teamColor);
+                        ImGui.ColorPicker4("ENEMY COLOR", ref enemyColor);
+                        ImGui.ColorPicker4("NAME COLOR", ref nameColor);
+                    }
+
+                    ImGui.EndTabBar();
                 }
-                ImGui.Checkbox("BHOP", ref isBhop);
 
                 ImGui.End();
             }
@@ -65,20 +92,13 @@ namespace Pudra
                 foreach (Player player in players)
                 {
                     bool isEnemy = localPlayer.team != player.team;
-                    if (playerOnScreen(player) && player.position != localPlayer.position && (isEnemy || isEspTeam))
+                    if (playerOnScreen(player) && player.pawnAddress != localPlayer.pawnAddress && (isEnemy || isEspTeam))
                     {
                         float playerHeight = player.position2D.Y - player.viewPosition2D.Y;
                         Vector2 rectTop = new Vector2(player.viewPosition2D.X - playerHeight / 3, player.viewPosition2D.Y);
                         Vector2 rectBottom = new Vector2(player.position2D.X + playerHeight / 3, player.position2D.Y);
                         Vector4 color = localPlayer.team == player.team ? teamColor : enemyColor;
-                        Vector4 nameColor = new Vector4(1, 1, 1, 1);
-                        Vector4 hpColor;
-                        if (player.health > 70)
-                            hpColor = new Vector4(0, 1, 0, 1); // green
-                        else if (player.health > 40)
-                            hpColor = new Vector4(1, 1, 0, 1); // yellow
-                        else
-                            hpColor = new Vector4(1, 0, 0, 1); // red
+                        Vector4 hpColor = getHealthColor(player.health);
 
                         if (isBoxEsp)
                         {
@@ -109,6 +129,24 @@ namespace Pudra
                         }
                     }
                 }
+            }
+        }
+
+        Vector4 getHealthColor(float health)
+        {
+            Vector4 green = new Vector4(0, 1, 0, 1); // green
+            Vector4 yellow = new Vector4(1, 1, 0, 1); // yellow
+            Vector4 red = new Vector4(1, 0, 0, 1); // red
+
+            float t = health / 100f;
+
+            if (t > 0.5f)
+            {
+                return Vector4.Lerp(yellow, green, (t - 0.5f) * 2f);
+            }
+            else
+            {
+                return Vector4.Lerp(red, yellow, t * 2f);
             }
         }
 

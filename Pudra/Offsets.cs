@@ -26,6 +26,9 @@
         public static int m_pCameraServices = (int)CS2Dumper.Schemas.ClientDll.C_BasePlayerPawn.m_pCameraServices;
         public static int m_vOldOrigin = (int)CS2Dumper.Schemas.ClientDll.C_BasePlayerPawn.m_vOldOrigin;
 
+        // C_CSPlayerPawnBase
+        public static int m_flFlashBangTime = (int)CS2Dumper.Schemas.ClientDll.C_CSPlayerPawnBase.m_flFlashBangTime;
+
         // C_CSPlayerPawn
         public static int m_flViewmodelOffsetX = (int)CS2Dumper.Schemas.ClientDll.C_CSPlayerPawn.m_flViewmodelOffsetX;
         public static int m_flViewmodelOffsetY = (int)CS2Dumper.Schemas.ClientDll.C_CSPlayerPawn.m_flViewmodelOffsetY;

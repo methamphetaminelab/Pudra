@@ -12,5 +12,6 @@ namespace Pudra
         public string name { get; set; }
         public uint lifeState { get; set; }
         public int team { get; set; }
+        public IntPtr pawnAddress { get; set; }
     }
 }

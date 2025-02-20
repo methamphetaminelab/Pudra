@@ -43,6 +43,11 @@ namespace Pudra
                     Utils.makeBunny(game, client);
                 }
 
+                if (renderer.isAntiFlash)
+                {
+                    Utils.antiFlash(game, client);
+                }
+
                 Thread.Sleep(1);
             }
         }

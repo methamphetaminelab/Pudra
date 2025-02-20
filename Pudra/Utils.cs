@@ -13,6 +13,7 @@ namespace Pudra
             Player localPlayer = new Player();
             List<Player> players = new List<Player>();
             localPlayer.team = game.ReadInt(localPlayerPawn, Offsets.m_iTeamNum);
+            localPlayer.pawnAddress = localPlayerPawn;
 
             for (int i = 0; i < 64; i++)
             {
@@ -49,6 +50,7 @@ namespace Pudra
                 player.health = health;
                 player.lifeState = lifeState;
                 player.team = game.ReadInt(currentPawn, Offsets.m_iTeamNum);
+                player.pawnAddress = currentPawn;
                 players.Add(player);
             }
 
@@ -99,6 +101,15 @@ namespace Pudra
             {
                 game.WriteUInt(client + Offsets.jump, 256);
             }
+        }
+
+        public static void antiFlash(Swed game, IntPtr client)
+        {
+            IntPtr localPlayerPawn = game.ReadPointer(client, Offsets.dwLocalPlayerPawn);
+            float flashBangTime = game.ReadFloat(localPlayerPawn, Offsets.m_flFlashBangTime);
+
+            if (flashBangTime > 0)
+                game.WriteFloat(localPlayerPawn, Offsets.m_flFlashBangTime, 0);
         }
     }
 }

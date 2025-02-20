@@ -1,12 +1,25 @@
-To open or hide the menu, press **DELETE**  
+> [!TIP]
+> To open or hide the menu, press **DELETE**  
   
-**Special Thanks**
+## SPECIAL THANKS
+
+> **swed64** — for [Swed64 library](https://github.com/Massivetwat/Swed64)  
+> **zaafar** — for [ClickableTransparentOverlay library (9.0.1)](https://github.com/zaafar/ClickableTransparentOverlay?ysclid=m7cfgjgiwl848542558)  
+> **a2x** — for [CS2 Dumper](https://github.com/a2x/cs2-dumper/)  
   
-The [Swed64](https://github.com/Massivetwat/Swed64) library was used for memory manipulation.  
-Thanks to **zaafar** for [ClickableTransparentOverlay (9.0.1)](https://github.com/zaafar/ClickableTransparentOverlay?ysclid=m7cfgjgiwl848542558), which was used for rendering.  
-A dump from [a2x](https://github.com/a2x/cs2-dumper/) was used.  
   
-  
-  
+## SCREENSHOTS  
 ![alt text](https://imgur.com/EOmUefD.png)  
 ![alt text](https://imgur.com/9q0xsFJ.png)  
+  
+  
+## CHANGELOG  
+  
+##### v0.1  
+> release  
+  
+##### v0.2  
+> Added smooth HP color transition  
+> Added tabs for the menu  
+> Added color selection for ESP  
+> Implemented ANTIFLASH  
