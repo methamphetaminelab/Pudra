@@ -40,5 +40,5 @@
 > Added color selection for ESP  
 > Implemented ANTIFLASH  
 
-#### v0.3
+#### v0.2.1
 > Added prototype AIMBOT
