@@ -131,7 +131,7 @@ namespace Pudra
             Vector3 newAnglesVec3 = new Vector3(newAngles.Y, newAngles.X, 0.0f);
             Console.WriteLine(newAngles.ToString(), newAnglesVec3.ToString());
 
-            if ((isAimTeam && players[0].team == localPlayer.team) || (!isAimTeam && players[0].team != localPlayer.team))
+            if ((isAimTeam && (players[0].team == localPlayer.team || players[0].team != localPlayer.team)) || (!isAimTeam && players[0].team != localPlayer.team))
                 game.WriteVec(client, Offsets.dwViewAngles, newAnglesVec3);
         }
     }
