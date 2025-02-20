@@ -13,5 +13,7 @@ namespace Pudra
         public uint lifeState { get; set; }
         public int team { get; set; }
         public IntPtr pawnAddress { get; set; }
+        public IntPtr controllerAddress { get; set; }
+        public float distance { get; set; }
     }
 }

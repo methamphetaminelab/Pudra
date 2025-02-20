@@ -7,7 +7,7 @@ namespace Pudra
     public class Program
     {
         // globals
-        public static Player[] players = { };
+        public static List<Player> players = new List<Player>();
         public static Player localPlayer = new Player();
         [DllImport("user32.dll")]
         static extern short GetAsyncKeyState(int vKey);
@@ -25,6 +25,7 @@ namespace Pudra
             Swed game = new Swed("cs2");
             IntPtr client = game.GetModuleBase("client.dll");
             const int SPACEBAR = 0x20; // vKey
+            const int LALT = 0xA4; // vKey
             Vector2 screenSize = renderer.screenSize;
             Console.CursorVisible = false;
             
@@ -46,6 +47,14 @@ namespace Pudra
                 if (renderer.isAntiFlash)
                 {
                     Utils.antiFlash(game, client);
+                }
+
+                if (renderer.isAim && GetAsyncKeyState(LALT) < 0)
+                {
+                    if (renderer.isAimByDistance)
+                    {
+                        Utils.aimByDistance(game, client, players, localPlayer, renderer.isAimTeam);
+                    }
                 }
 
                 Thread.Sleep(1);

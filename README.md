@@ -39,3 +39,6 @@
 > Added tabs for the menu  
 > Added color selection for ESP  
 > Implemented ANTIFLASH  
+
+#### v0.3
+> Added prototype AIMBOT

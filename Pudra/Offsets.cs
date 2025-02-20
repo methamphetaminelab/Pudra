@@ -6,6 +6,7 @@
         public static int dwEntityList = (int)CS2Dumper.Offsets.ClientDll.dwEntityList;
         public static int dwLocalPlayerPawn = (int)CS2Dumper.Offsets.ClientDll.dwLocalPlayerPawn;
         public static int dwViewMatrix = (int)CS2Dumper.Offsets.ClientDll.dwViewMatrix;
+        public static int dwViewAngles = (int)CS2Dumper.Offsets.ClientDll.dwViewAngles;
 
         // C_BaseEntity
         public static int m_iHealth = (int)CS2Dumper.Schemas.ClientDll.C_BaseEntity.m_iHealth;

@@ -17,6 +17,11 @@ namespace Pudra
         private readonly object playerLock = new object();
         private ImDrawListPtr drawList;
 
+        // AIMBOT
+        public bool isAim = false;
+        public bool isAimByDistance = false;
+        public bool isAimTeam = false;
+
         // ESP
         private bool isEsp = false;
         private bool isEspTeam = false;
@@ -49,6 +54,17 @@ namespace Pudra
                 ImGui.Begin("Pudra");
                 if (ImGui.BeginTabBar("Tabs"))
                 {
+
+                    if (ImGui.BeginTabItem("AIMBOT"))
+                    {
+                        ImGui.Checkbox("AIMBOT", ref isAim);
+                        if (isAim)
+                        {
+                            ImGui.Checkbox("BY DISTANCE", ref isAimByDistance);
+                            ImGui.Checkbox("AIM TEAMMATES", ref isAimTeam);
+                        }
+                        ImGui.EndTabItem();
+                    }
 
                     if (ImGui.BeginTabItem("ESP"))
                     {
