@@ -1,8 +1,25 @@
-> [!TIP]
+> [!TIP]  
 > To open or hide the menu, press **DELETE**  
   
-## SPECIAL THANKS
-
+## FEATURES  
+> - ESP    
+>   - TEAM ESP  
+>   - BOX ESP  
+>   - LINE ESP  
+>   - NAME ESP  
+>   - HEALTH ESP  
+>   
+> - MISC  
+>   - BHOP  
+>   - ANTIFLASH  
+>   
+> - COLORS  
+>   - TEAM COLOR  
+>   - ENEMY COLOR  
+>   - NAME COLOR  
+  
+## SPECIAL THANKS  
+  
 > **swed64** — for [Swed64 library](https://github.com/Massivetwat/Swed64)  
 > **zaafar** — for [ClickableTransparentOverlay library (9.0.1)](https://github.com/zaafar/ClickableTransparentOverlay?ysclid=m7cfgjgiwl848542558)  
 > **a2x** — for [CS2 Dumper](https://github.com/a2x/cs2-dumper/)  
