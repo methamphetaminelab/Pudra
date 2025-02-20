@@ -26,8 +26,7 @@
   
   
 ## SCREENSHOTS  
-![alt text](https://imgur.com/EOmUefD.png)  
-![alt text](https://imgur.com/9q0xsFJ.png)  
+![alt text](https://imgur.com/LwbNCvk.png)  
   
   
 ## CHANGELOG  
